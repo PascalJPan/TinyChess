@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TinyChess</title>
+    <link href="./styles.css" rel="stylesheet">
+    <link rel="prefetch" href="pieces/wK.svg">
+    <link rel="prefetch" href="pieces/wQ.svg">
+    <link rel="prefetch" href="pieces/wR.svg">
+    <link rel="prefetch" href="pieces/wB.svg">
+    <link rel="prefetch" href="pieces/wN.svg">
+    <link rel="prefetch" href="pieces/wP.svg">
+    <link rel="prefetch" href="pieces/bK.svg">
+    <link rel="prefetch" href="pieces/bQ.svg">
+    <link rel="prefetch" href="pieces/bR.svg">
+    <link rel="prefetch" href="pieces/bB.svg">
+    <link rel="prefetch" href="pieces/bN.svg">
+    <link rel="prefetch" href="pieces/bP.svg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Delius&family=Outfit:wght@100..900&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="board-wrapper">
+      <button id="toggle-view-button"><div class="iconDiv" style="--src:url(/icons/settings.png?v=5)"></div></button>
+      <button id="regenerate-button"><div class="iconDiv" style="--src:url(/icons/generate.png?v=5)"></div></button>
+      <button id="toggle-eval-button"><div class="iconDiv" style="--src:url(/icons/evalbar.png?v=5)"></div></button>
+      <button id="replay-button"><div class="iconDiv" style="--src:url(/icons/replay.png?v=5)"></div></button>
+
+      <div id="control-board">
+        <div class="section" id="pieces-section">
+          <button class="button piece-button active" id="p">P</button>
+          <button class="button piece-button active" id="n">N</button>
+          <button class="button piece-button active" id="b">B</button>
+          <button class="button piece-button active" id="r">R</button>
+          <button class="button piece-button" id="q">Q</button>
+        </div>
+        <div class="section" id="size-section">
+          
+          <button class="button active" id="4">4</button>
+          <button class="button" id="5">5</button>
+         
+        </div>
+        <div class="section" id="density">
+          <button class="button density-button" id="0.25">25%</button>
+          <button class="button density-button active" id="0.5">50%</button>
+          <button class="button density-button" id="0.75">75%</button>
+          <button class="button density-button" id="1">100%</button>
+        </div>
+        <div class="section" id="mode-section">
+          <button class="button mode-button button-small-font" id="mirror">mirror</button>
+          <button class="button mode-button button-small-font active" id="spin">spin</button>
+          <button class="button mode-button button-small-font" id="random">random</button>
+          <button class="button mode-button button-small-font" id="puzzle">puzzle</button>
+        </div>
+      </div>
+
+      <div id="chessboard">
+      </div>
+      <div id="evaluation-bar">
+        <div id="evaluation-fill"></div>
+        <div id="evaluation-mid-line"></div>
+        <div id="evaluation-score"></div>
+      </div>
+      <div id="engine-time">0.0s</div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

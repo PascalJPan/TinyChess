@@ -1,0 +1,401 @@
+:root {
+  --light-square-color: #f3f7fc;
+  --light-square-selected: #c5dfff;
+  --dark-square-color: #18607c;
+  --dark-square-selected: #398eaf;
+  --highlight-color: #D37BA2;
+  --gray:#333;
+
+  --black: #000;
+  --font-color: var(--light-square-color);
+  --chess-board-size: 75vmin;
+  --adaptive-font-size: 3vmin;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;       
+  overscroll-behavior: none; 
+}
+
+body {
+  text-align: center;
+  background-color: #f5f5f5;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+   overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#board-wrapper {
+  position: relative;
+  width: var(--chess-board-size);
+  height: var(--chess-board-size);
+  display: flex;
+  border: 2px solid var(--gray);
+  padding: 1vmin; 
+  background-color: var(--light-square-color); 
+}
+
+#control-board {
+  position: absolute;
+  width: calc(100% - 2vmin); /* subtract padding */
+  height: calc(100% - 2vmin);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--gray);
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+#chessboard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  box-sizing: border-box;
+}
+
+#toggle-view-button {
+  position: absolute;
+  width: 8vmin;
+  height: 8vmin;
+  top: -8vmin;
+  left: -8vmin;
+  background-color: white;
+  border: 2px solid var(--gray);
+  z-index: 100;
+  border-radius: 4vmin 4vmin 0 4vmin;
+}
+
+#regenerate-button {
+  position: absolute;
+  width: 8vmin;
+  height: 8vmin;
+  bottom: -8vmin;
+  left: -8vmin;
+  background-color: white;
+  border: 2px solid var(--gray);
+  z-index: 100;
+  border-radius: 4vmin  0 4vmin 4vmin;
+}
+
+#toggle-eval-button {
+  position: absolute;
+  width: 8vmin;
+  height: 8vmin;
+  top: -8vmin;
+  right: -8vmin;
+  background-color: white;
+  border: 2px solid var(--gray);
+  z-index: 100;
+  border-radius: 4vmin 4vmin 4vmin 0;
+}
+
+#replay-button {
+  position: absolute;
+  width: 8vmin;
+  height: 8vmin;
+  bottom: -8vmin;
+  right: -8vmin;
+  background-color: white;
+  border: 2px solid var(--gray);
+  z-index: 100;
+  border-radius: 0 4vmin 4vmin 4vmin;
+}
+
+#gameResult {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  width: 40%;
+  height: 40%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray);
+  font-size: calc(8*var(--adaptive-font-size));
+  border-radius: 11px;
+  z-index: 1000;
+  text-align: center;
+}
+
+#gameResult:hover {
+  color: var(--highlight-color);
+}
+
+.board-grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--gray);
+}
+
+.square {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.label-wrap {
+  position: absolute;
+  height: 50%;
+  width: 50%;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.row-label-wrap {
+width: 12vmin;
+bottom: 25%;
+left: -12vmin;
+}
+
+.column-label-wrap {
+height: 12vmin;
+top: -12vmin;
+left: 25%;
+}
+
+.label {
+  font-size: calc(1.5*var(--adaptive-font-size));
+  position: relative;
+  color: var(--font-color);
+}
+
+.square img {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+img.piece {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: none;
+  will-change: transform;
+}
+
+.white {
+  background-color: var(--light-square-color);
+}
+
+.black {
+  background-color: var(--dark-square-color);
+}
+
+.selected.white {
+ background-color: var(--light-square-selected);
+}
+
+.selected.black {
+  background-color: var(--dark-square-selected);
+}
+
+.valid-move {
+  box-shadow: inset 0 0 4px 8px var(--highlight-color);
+}
+
+
+
+#evaluation-bar {
+  position: absolute;
+  display: none;
+  height: calc(var(--chess-board-size) - 4vmin);
+  width: 2vmin;
+  left: calc(var(--chess-board-size) + 1vmin);
+  bottom: 1.5vmin;
+  background-color: var(--dark-square-color);
+  border-radius: 2vmin;
+  border: 1px solid var(--gray);
+}
+
+#evaluation-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background-color: var(--light-square-color);
+  border-radius: 0 0 2vmin 2vmin;
+  transition: height 0.3s ease;
+}
+
+#evaluation-mid-line {
+  position: absolute;
+  bottom: 49.9%;
+  width: 100%;
+  height: 1px;
+  background-color: var(--gray);
+}
+
+#evaluation-score {
+  position: absolute;
+  font-size: calc(1.5*var(--adaptive-font-size));
+  bottom: 40%;
+  left: 200%;
+  width: 100%;
+  height: 20%;
+  color: var(--font-color);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+#engine-time {
+  position: absolute;
+  display: flex;
+  width: calc(var(--chess-board-size) - 4vmin);
+  height: 8vmin;
+  top: calc(var(--chess-board-size));
+  left: 1.5vmin;
+  transition: 2s;
+  opacity: 0%;
+  font-size: calc(1*var(--adaptive-font-size));
+  color: var(--font-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: rgba(255,255,255,0.8);
+  border: 0;
+  width: 100%;
+  height: 100%;
+  font-size: calc(2*var(--adaptive-font-size));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--gray);
+}
+
+.button-small-font {
+  font-size: calc(1.25*var(--adaptive-font-size));
+}
+
+.active {
+  background-color: rgba(255, 255, 255, 1);
+  color: black;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--gray);
+}
+
+
+.iconDiv {
+  width: 100%;
+  height: 100%;
+  background-color: black;                        /* default color */
+  mask: var(--src) no-repeat center / contain;     /* hide all but the shape */
+  -webkit-mask: var(--src) no-repeat center / contain;
+}
+
+.iconDiv:hover {
+  background-color: var(--highlight-color);      /* or whatever hover color you like */
+}
+
+#regenerate-button::after {
+  content: "Generate New Board";
+}
+
+#toggle-view-button::after {
+  content: "Show Generation Parameters";
+}
+
+#toggle-eval-button::after {
+  content: "Toggle Evaluation Bar";
+}
+
+#replay-button::after {
+  content: "Replay Current Board";
+}
+
+#regenerate-button::after,
+#toggle-view-button::after {
+  position: absolute;
+  bottom: 50%;
+  left: 110%;
+  transform: translateY(50%);
+  background-color: rgba(30, 30, 30, 0.95);
+  color: white;
+  padding: 1vmin 2vmin;
+  font-size: calc(1*var(--adaptive-font-size));
+  white-space: nowrap;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+#toggle-eval-button::after,
+#replay-button::after {
+  position: absolute;
+  bottom: 50%;
+  right: 110%;
+  transform: translateY(50%);
+  background-color: rgba(30, 30, 30, 0.95);
+  color: white;
+  padding: 1vmin 2vmin;
+  font-size: calc(1*var(--adaptive-font-size));
+  white-space: nowrap;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+
+
+#regenerate-button:hover::after,
+#toggle-view-button:hover::after,
+#toggle-eval-button:hover::after,
+#replay-button:hover::after {
+  animation: showTooltip 0s linear 1s forwards;
+}
+
+@keyframes showTooltip {
+  to {
+    opacity: 1;
+  }
+}
