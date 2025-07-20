@@ -1,4 +1,4 @@
-# TinyChess – Infinite Chess Variants with AI
+# TinyChess - Chess Position Generator with AI
 
 Generate and play custom chess positions at tiny board sizes, test your tactics with a built-in AI, and explore puzzles generated on the fly.
 
