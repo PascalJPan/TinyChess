@@ -4,8 +4,6 @@ Generate and play custom chess positions at tiny board sizes, test your tactics 
 
 [Play it here!](https://pascalpan.com/creations/TinyChess/)
 
----
-
 ## Features
 
 * **Custom Board Generation**: Random, Spin, Mirror, Puzzle modes
@@ -25,8 +23,6 @@ Generate and play custom chess positions at tiny board sizes, test your tactics 
   * Click-to-move with full legality checks (en passant, promotions, castling)
   * Real-time evaluation bar
 
----
-
 ## Usage
 
 1. **Select Settings**: Choose board size (N×N), density, and generation mode.
@@ -38,8 +34,6 @@ Generate and play custom chess positions at tiny board sizes, test your tactics 
    * Watch the AI respond automatically for the opposing side.
 4. **Toggle Views**: Use the **Toggle View** button to show/hide generation controls.
 5. **Toggle Evaluation**: Show or hide the evaluation bar with the **Toggle Eval** button.
-
----
 
 ## Configuration
 
